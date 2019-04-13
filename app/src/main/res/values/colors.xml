@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="appColor_register">#FF1493</color>
+    <color name="network_tip_color">#DC143C</color>
+    <color name="network_tip_background">#FFB6C1</color>
+    <color name="bottom_color">#444444</color>
+    <color name="font_color_icon_message">#ffffff</color>
+</resources>
