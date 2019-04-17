@@ -30,10 +30,13 @@
                 android:textSize="25dp"
                 android:text="Message"
                 android:gravity="center"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitCenter"
+                android:id="@+id/message_add"
+                android:src="@drawable/add"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/contents"

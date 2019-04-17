@@ -10,13 +10,11 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import org.jivesoftware.smack.chat.Chat;
-import org.jivesoftware.smack.chat.ChatManagerListener;
-import org.jivesoftware.smack.chat.ChatMessageListener;
-import org.jivesoftware.smack.chat.ChatManager;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +30,7 @@ public class MessageUi extends AppCompatActivity implements View.OnClickListener
     private ImageView messageImage;
     private ImageView contactsImage;
     private ImageView newsImage;
+    private ImageView addImage;
     private com.example.lenovo.myapplication.CircleImageView titleAvator;
     private byte[] data = null;
     public static String loginName;
@@ -135,8 +134,40 @@ public class MessageUi extends AppCompatActivity implements View.OnClickListener
         contactsLayout.setOnClickListener(this);
         titleAvator = (com.example.lenovo.myapplication.CircleImageView)findViewById(R.id.title_image);
         titleAvator.setOnClickListener(this);
+        addImage = (ImageView)findViewById(R.id.message_add);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMenu(addImage);
+            }
+        });
     }
-
+    //显示添加好友/添加群组对话框
+    private void showMenu(View view)
+    {
+        final PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.poup, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch(menuItem.getItemId())
+                {
+                    case R.id.addFriends:
+                        Toast.makeText(MessageUi.this, "添加好友", Toast.LENGTH_SHORT).show();
+                        Intent intent_f = new Intent(MessageUi.this, AddFOrG.class);
+                        intent_f.putExtras(bundle);
+                        startActivity(intent_f);
+                        break;
+                    case R.id.createGroup:
+                        Toast.makeText(MessageUi.this, "创建一个群", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                popupMenu.dismiss();
+                return true;
+            }
+        });
+        popupMenu.show();
+    }
     @Override
     public void onClick(View view) {
         switch(view.getId())
@@ -230,7 +261,7 @@ public class MessageUi extends AppCompatActivity implements View.OnClickListener
 
     @Override
     protected void onDestroy() {
-
+        Log.v("MessageUI","我被销毁了，连接就断了");
         XmppUtil.getConnection().disconnect();
         super.onDestroy();
     }

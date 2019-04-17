@@ -86,6 +86,16 @@ public class XmppUtil {
         }
         return null;
     }
+    //返回一个花名册信息
+    public static Roster getRoster()
+    {
+        if(!checkConnection())
+        {
+            return null;
+        }
+        Roster roster = Roster.getInstanceFor(connection);
+        return roster;
+    }
     //获取所有分组名称
     public static void getAllGroup()
     {

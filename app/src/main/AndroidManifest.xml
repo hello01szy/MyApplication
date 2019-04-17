@@ -26,7 +26,7 @@
         <activity android:name=".MessageUi" />
         <activity
             android:name=".EditInfo"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -38,7 +38,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".AddFOrG"></activity>
     </application>
 
 </manifest>
